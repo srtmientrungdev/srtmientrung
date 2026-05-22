@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -11,32 +12,52 @@ interface ApartmentCardProps {
 }
 
 function ApartmentCard({ src, index, total }: ApartmentCardProps) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-sm border border-zinc-100 bg-white">
+      {/* Spinner shown until image loads */}
+      {!loaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-zinc-50 z-10">
+          <svg
+            className="w-10 h-10 animate-spin text-primary/40"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" />
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+          </svg>
+        </div>
+      )}
+
       <Image
         src={src}
         alt={`Hình ${index + 1}`}
         fill
-        className="object-contain"
+        className={`object-contain transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         sizes="(max-width: 1024px) 90vw, 55vw"
         priority={index === 0}
+        onLoad={() => setLoaded(true)}
       />
 
-      {/* Counter + logo overlay */}
-      <div className="absolute inset-x-0 top-0 flex items-center px-4 pt-3 pointer-events-none">
-        <span className="text-xs font-semibold bg-zinc-800/80 text-white rounded-full px-3 py-1 backdrop-blur-sm z-10">
-          {index + 1} / {total}
-        </span>
-        <div className="absolute left-1/2 -translate-x-1/2">
-          <Image
-            src="/logo.png"
-            alt="SRT Mientrung"
-            width={120}
-            height={28}
-            className="h-7 w-auto object-contain"
-          />
+      {/* Counter + logo overlay — only visible when loaded */}
+      {loaded && (
+        <div className="absolute inset-x-0 top-0 flex items-center px-4 pt-3 pointer-events-none">
+          <span className="text-xs font-semibold bg-zinc-800/80 text-white rounded-full px-3 py-1 backdrop-blur-sm z-10">
+            {index + 1} / {total}
+          </span>
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Image
+              src="/logo.png"
+              alt="SRT Mientrung"
+              width={120}
+              height={28}
+              className="h-7 w-auto object-contain"
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
