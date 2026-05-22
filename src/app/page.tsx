@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <main className="flex-1 flex flex-col lg:flex-row lg:overflow-hidden">
         {/* Left — search form, sticky & vertically centred */}
         <div className="lg:w-[42%] lg:h-[calc(100vh-72px)] lg:sticky lg:top-[72px] lg:overflow-hidden flex flex-col justify-center py-8 lg:py-0 lg:px-14">
-          <SearchForm defaultCode={code} notFound={notFound} hasResult={!!images} />
+          <SearchForm key={code} defaultCode={code} notFound={notFound} hasResult={!!images} />
         </div>
 
         {/* Right — carousel fills exact viewport height on desktop */}

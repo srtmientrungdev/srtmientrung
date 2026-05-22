@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { LuCircleAlert, LuCircleCheck, LuInfo, LuRotateCcw, LuSearch } from 'react-icons/lu';
@@ -20,8 +19,10 @@ export default function SearchForm({ defaultCode = '', notFound = false, hasResu
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<SearchFormData>({ defaultValues: { apartmentCode: defaultCode } });
+
 
   const onSubmit = (data: SearchFormData) => {
     const code = data.apartmentCode.trim().toUpperCase();
@@ -64,13 +65,14 @@ export default function SearchForm({ defaultCode = '', notFound = false, hasResu
           >
             <LuSearch className="w-5 h-5 lg:w-6 lg:h-6" />
           </button>
-          <Link
-            href="/"
+          <button
+            type="button"
             aria-label="Đặt lại"
+            onClick={() => { reset({ apartmentCode: '' }); router.push('/'); }}
             className="h-12 lg:h-14 w-12 lg:w-14 flex items-center justify-center bg-zinc-100 text-zinc-500 rounded-xl hover:bg-zinc-200 active:scale-95 transition-all shrink-0"
           >
             <LuRotateCcw className="w-5 h-5 lg:w-6 lg:h-6" />
-          </Link>
+          </button>
         </form>
 
         {errors.apartmentCode && (
@@ -83,13 +85,6 @@ export default function SearchForm({ defaultCode = '', notFound = false, hasResu
           <div className="flex items-center gap-1.5 mt-3">
             <LuCircleCheck className="w-3.5 h-3.5 text-green-500 shrink-0" />
             <p className="text-xs lg:text-sm text-green-600">Tìm thấy căn hộ</p>
-          </div>
-        )}
-
-        {notFound && (
-          <div className="flex items-center gap-1.5 mt-3">
-            <LuCircleAlert className="w-3.5 h-3.5 text-red-500 shrink-0" />
-            <p className="text-xs lg:text-sm text-red-500">Không tìm thấy căn hộ</p>
           </div>
         )}
 
