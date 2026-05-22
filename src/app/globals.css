@@ -1,8 +1,13 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --header-h: 72px;
 }
 
 @theme inline {
@@ -10,6 +15,58 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-primary: #993d2b;
+  --color-navy: #0b4c8c;
+  --color-accent-red: #be123c;
+}
+
+/* Custom Swiper pagination */
+.apt-swiper .swiper-pagination {
+  background: white;
+  border-radius: 999px;
+  padding: 4px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.swiper-pagination-bullet {
+  background: #cbd5e1;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active {
+  background: #993d2b !important;
+}
+
+/* Hide default Swiper nav (we use custom buttons) */
+.swiper-button-next,
+.swiper-button-prev {
+  display: none !important;
+}
+
+/* Mobile: slides use aspect ratio so image fits without scrolling */
+.apt-swiper {
+  width: 100%;
+}
+.apt-swiper .swiper-slide {
+  aspect-ratio: 3 / 4;
+}
+
+/* Desktop: Swiper fills the right panel height */
+@media (min-width: 1024px) {
+  .apt-swiper {
+    height: 100%;
+  }
+  .apt-swiper .swiper-wrapper {
+    height: 100%;
+  }
+  .apt-swiper .swiper-slide {
+    height: 100%;
+    aspect-ratio: unset;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

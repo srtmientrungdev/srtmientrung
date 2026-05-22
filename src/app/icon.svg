@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Red diamond -->
+  <polygon points="50,3 97,50 50,97 3,50" fill="#d42020"/>
+
+  <!-- Upper white bar — right-aligned, top half (top arc of S) -->
+  <rect x="42" y="18" width="29" height="23" rx="7" fill="white"/>
+
+  <!-- Lower white bar — left-aligned, bottom half (bottom arc of S) -->
+  <rect x="29" y="59" width="29" height="23" rx="7" fill="white"/>
+
+  <!-- Navy blue left tab -->
+  <rect x="1" y="43" width="14" height="14" rx="3" fill="#0b4c8c"/>
+
+  <!-- Navy blue right tab -->
+  <rect x="85" y="43" width="14" height="14" rx="3" fill="#0b4c8c"/>
+</svg>
