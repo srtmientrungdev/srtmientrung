@@ -54,7 +54,7 @@ export default function SearchForm({ defaultCode = '', notFound = false, hasResu
                 message: 'Mã căn hộ không hợp lệ',
               },
             })}
-            placeholder="Nhập mã căn hộ (VD: P1.01.12A)"
+            placeholder="Nhập mã căn hộ (VD: P10112A)"
             autoComplete="off"
             className="flex-1 h-12 lg:h-14 px-4 rounded-xl border border-zinc-200 lg:border-zinc-300 text-sm lg:text-base text-zinc-800 placeholder:text-zinc-400 bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
           />
@@ -91,7 +91,7 @@ export default function SearchForm({ defaultCode = '', notFound = false, hasResu
         {!hasResult && !notFound && (
           <div className="flex items-center gap-1.5 mt-3">
             <LuInfo className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
-            <p className="text-xs lg:text-sm text-zinc-400">Ví dụ: P1.01.12A</p>
+            <p className="text-xs lg:text-sm text-zinc-400">Ví dụ: P10112A</p>
           </div>
         )}
       </div>
